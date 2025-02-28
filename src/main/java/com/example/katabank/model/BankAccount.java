@@ -1,5 +1,7 @@
 package com.example.katabank.model;
 
+import com.example.katabank.exception.InsufficientFundsException;
+import com.example.katabank.exception.NegativeAmountException;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +17,7 @@ public class BankAccount {
 
     public void deposit(double amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("Deposit amount must be positive.");
+            throw new NegativeAmountException("Deposit amount must be positive.");
         }
         balance = balance + amount;
         transactions.add(new Transaction(LocalDateTime.now(), amount, balance, TransactionType.DEPOSIT));
@@ -23,10 +25,10 @@ public class BankAccount {
 
     public void withdraw(double amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("Withdrawal amount must be positive.");
+            throw new NegativeAmountException("Withdrawal amount must be positive.");
         }
         if (amount > balance) {
-            throw new IllegalArgumentException("Insufficient funds.");
+            throw new InsufficientFundsException("Insufficient funds.");
         }
         balance = balance - amount;
         transactions.add(new Transaction(LocalDateTime.now(), amount, balance, TransactionType.WITHDRAWAL));

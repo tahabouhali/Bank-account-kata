@@ -3,6 +3,7 @@ package com.example.katabank.controller;
 import com.example.katabank.model.Transaction;
 import com.example.katabank.service.BankAccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +16,28 @@ public class BankAccountController {
     private final BankAccountService bankAccountService;
 
     @PostMapping("/deposit")
-    public void deposit(@RequestParam double amount) {
+    public ResponseEntity<String> deposit(@RequestParam double amount) {
         bankAccountService.deposit(amount);
+        return ResponseEntity.ok("Deposit successful!");
     }
 
     @PostMapping("/withdraw")
-    public void withdraw(@RequestParam double amount) {
+    public ResponseEntity<String> withdraw(@RequestParam double amount) {
         bankAccountService.withdraw(amount);
+        return ResponseEntity.ok("Withdrawal successful!");
     }
-
     @GetMapping("/balance")
-    public double getBalance() {
-        return bankAccountService.getBalance();
+    public ResponseEntity<Double> getBalance() {
+        return ResponseEntity.ok(bankAccountService.getBalance());
     }
 
     @GetMapping("/transactions")
-    public List<Transaction> getTransactions() {
-        return bankAccountService.getTransactionHistory();
+    public ResponseEntity<List<Transaction>> getTransactions() {
+        return ResponseEntity.ok(bankAccountService.getTransactionHistory());
     }
 
     @GetMapping("/statement")
-    public List<Transaction> getStatement() {
-        return bankAccountService.getTransactionHistory();
+    public ResponseEntity<List<Transaction>> getStatement() {
+        return ResponseEntity.ok(bankAccountService.getTransactionHistory());
     }
-
 }

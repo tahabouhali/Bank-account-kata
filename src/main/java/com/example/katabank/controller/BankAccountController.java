@@ -26,6 +26,7 @@ public class BankAccountController {
         bankAccountService.withdraw(amount);
         return ResponseEntity.ok("Withdrawal successful!");
     }
+
     @GetMapping("/balance")
     public ResponseEntity<Double> getBalance() {
         return ResponseEntity.ok(bankAccountService.getBalance());

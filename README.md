@@ -15,4 +15,4 @@ like deposits, withdrawals, and transaction history retrieval.
 - Deposit: POST /api/banks/accounts/deposit?amount=<amount>
 - Withdraw: POST /api/banks/accounts/withdraw?amount=<amount>
 - Balance: GET /api/banks/accounts/balance
-- Transactions: GET /api/banks/accounts/transactions
+- Statement: GET /api/banks/accounts/statement

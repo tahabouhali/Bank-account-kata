@@ -32,11 +32,6 @@ public class BankAccountController {
         return ResponseEntity.ok(bankAccountService.getBalance());
     }
 
-    @GetMapping("/transactions")
-    public ResponseEntity<List<Transaction>> getTransactions() {
-        return ResponseEntity.ok(bankAccountService.getTransactionHistory());
-    }
-
     @GetMapping("/statement")
     public ResponseEntity<List<Transaction>> getStatement() {
         return ResponseEntity.ok(bankAccountService.getTransactionHistory());
